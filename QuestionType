@@ -1,0 +1,25 @@
+package Final;
+/**
+ * 
+ */
+
+/**
+ * @author pk20822
+ *
+ */
+enum QuestionType {
+	
+	 TRUE_FALSE("TRUE/FALSE"), SHORT_ANSWER("Short Answer"),MULTIPLE_CHOICE("Multiple-Choice");
+	
+	private String type;
+	
+	public String getType() {
+		return type;
+	}
+	
+	private QuestionType(String type) {
+		this.type = type;		
+	}
+	
+	
+}
