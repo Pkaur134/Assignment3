@@ -1,0 +1,47 @@
+package Final;
+
+public class TFQuestion extends Question {
+
+	private boolean answer = false;
+
+	public TFQuestion(int id, String text, boolean answer) {
+		super(id, text);
+		this.answer = answer;
+		questionType = QuestionType.TRUE_FALSE;
+		// TODO Auto-generated constructor stub
+	}
+
+	public TFQuestion() {
+		// TODO Auto-generated constructor stub
+		questionType = QuestionType.TRUE_FALSE;
+	}
+
+	public boolean isAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(boolean answer) {
+		this.answer = answer;
+	}
+
+	public boolean isCorrect(Object guess) {
+		if(guess==null) {
+			return false;
+		}
+		if(guess.getClass().equals("String")) {
+			return guess.toString().toLowerCase().equals("true")==this.answer;
+		}
+		if(guess.getClass().equals("Boolean")) {
+			return (Boolean)guess== this.answer;
+		}
+		return false; 
+	}
+
+	@Override
+	public String toString() {
+		
+		return "#" + this.getQuetionId() + ": " + this.answer + ".";
+	}
+	
+
+}
