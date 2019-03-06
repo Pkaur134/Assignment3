@@ -1,0 +1,45 @@
+package Final;
+
+
+public class SAQuestion extends Question{
+
+	private String answer;
+
+	public SAQuestion(int id, String text, String answer) {
+		super(id, text);
+		this.answer = answer;
+		questionType= QuestionType.SHORT_ANSWER;
+		// TODO Auto-generated constructor stub
+	}
+
+	public SAQuestion() {
+		// TODO Auto-generated constructor stub
+		//this.answer = "TBD";
+		questionType= QuestionType.SHORT_ANSWER;
+	}
+
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) throws IllegalArgumentException{
+		if (answer == null || answer.length() != 0) {
+			throw new IllegalArgumentException("Question text is Invalid, cannot be empty");
+		}
+		this.answer = answer;
+	}
+
+	public boolean isCorrect(Object guess) {
+		if(guess==null) {
+			return false;
+		}
+		return guess.toString().equalsIgnoreCase(this.answer);
+		
+	}
+
+	@Override
+	public String toString() {
+		return "#" + this.getQuetionId() + ": " + this.answer + ".";
+	}
+
+}
