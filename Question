@@ -1,0 +1,52 @@
+package Final;
+
+public abstract class Question {
+
+	private int questionId;
+	private String questionText;
+	
+	protected QuestionType questionType;
+
+	Question() {
+		this.questionText = "TBD";
+		this.questionId = 1;
+	}
+
+	Question(int id, String text) {
+		this.questionId = id;
+		this.questionText = text;
+	}
+
+	public int getQuetionId() {
+		return questionId;
+	}
+
+	public void setQuetionId(int questionId) throws IllegalArgumentException {
+		if (getQuetionId() <= 0) {
+			throw new IllegalArgumentException("Question id is Invalid, must be greater than 0");
+		}
+		this.questionId = questionId;
+	}
+
+	public String getQuestionText() {
+		return questionText;
+	}
+
+	public void setQuestionText(String questionText) throws IllegalArgumentException {
+		if (questionText ==null || questionText.length() != 0) {
+			throw new IllegalArgumentException("Question text is Invalid, cannot be empty");
+		}
+		this.questionText = questionText;
+	}
+
+	public abstract boolean isCorrect(Object object);
+
+	@Override
+	public String toString() {
+		if (this.questionText.equals("TBD")) {
+			return "#" + this.questionId + ": No Question text entered";
+		}
+		return "#" + this.questionId + ": " + this.questionText + ".";
+	}
+
+}
