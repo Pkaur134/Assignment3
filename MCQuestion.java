@@ -1,4 +1,4 @@
-package Final;
+package JaskiratSingh_LIBa3;
 
 /**
  * Put your JavaDocs here.
@@ -94,6 +94,7 @@ public class MCQuestion extends Question {
 	 */
 	public void setOptions(String... str) {
 		if (str.length > 0) {
+			options = new String[str.length];
 			for (int iOption = 0; iOption < str.length; iOption++) {
 				if (str[iOption] == null) 
 					throw new IllegalArgumentException("The option " + (iOption+1) + " is null");
@@ -128,10 +129,10 @@ public class MCQuestion extends Question {
 	 * your own words.
 	 */
 	public boolean isCorrect(Object guess) {
-		if (guess.getClass().equals("String")) {
+		if (guess instanceof String) {
 			return (char) ((String) guess).charAt(0) == this.answer;
 		} 
-		if (guess.getClass().equals("char") || guess.getClass().equals("Character")) {
+		if (guess instanceof Character) {
 			return (char) guess == this.answer;
 		} 
 			return false;
@@ -161,6 +162,7 @@ public class MCQuestion extends Question {
 		StringBuffer finalText = new StringBuffer();
 		char letter = 'a';
 		finalText.append(this.getQuestionText());
+		finalText.append("?");
 		finalText.append("\n");
 		if (options.length == 0)
 			finalText.append("No options added, yet!");
@@ -172,8 +174,7 @@ public class MCQuestion extends Question {
 				finalText.append("\n");
 				
 			}
-			finalText.append("Answer: ");
 		}
-		return "#" + this.getQuetionId() + ": " + finalText;
+		return "#" + this.getQuetionId() + ": " + finalText ;
 	}
 }
