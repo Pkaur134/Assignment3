@@ -1,4 +1,4 @@
-package Final;
+package JaskiratSingh_LIBa3;
 /**
  * 
  */
@@ -7,7 +7,7 @@ package Final;
  * @author pk20822
  *
  */
-enum QuestionType {
+public enum QuestionType {
 	
 	 TRUE_FALSE("TRUE/FALSE"), SHORT_ANSWER("Short Answer"),MULTIPLE_CHOICE("Multiple-Choice");
 	
