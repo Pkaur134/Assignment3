@@ -1,4 +1,4 @@
-package Final;
+package JaskiratSingh_LIBa3;
 
 
 public class SAQuestion extends Question{
@@ -39,7 +39,7 @@ public class SAQuestion extends Question{
 
 	@Override
 	public String toString() {
-		return "#" + this.getQuetionId() + ": " + this.getQuestionText() + "? \n Answer: " ;
+		return "#" + this.getQuetionId() + ": " + this.getQuestionText() + "?" ;
 	}
 
 }
