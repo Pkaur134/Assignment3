@@ -1,14 +1,9 @@
-package Final;
+package JaskiratSingh_LIBa3;
 import java.util.ArrayList;
 
 public class QuestionList extends ArrayList<Question>{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	// default Constructor
+		// default Constructor
 	QuestionList(){
 		
 	}
@@ -22,7 +17,8 @@ public class QuestionList extends ArrayList<Question>{
 	}
 	/*Return the Question*/ 
 	public String presentQuestion(int index){
-		if(index<this.size() && index>0){
+		int size = this.size();
+		if(index < size && index >= 0){
 			return this.get(index).toString();
 		}else{
 			return null;
