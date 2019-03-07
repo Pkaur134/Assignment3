@@ -2,28 +2,31 @@ package Final;
 import java.util.ArrayList;
 
 public class QuestionList extends ArrayList<Question>{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-	public QuestionList() {
+	// default Constructor
+	QuestionList(){
 		
 	}
 	
-	public QuestionList(ArrayList<Question> question) {	
-		if(question.size() > 0) {
-			for(int i=0;i<question.size();i++) {
-			this.add(question.get(i));
-			}
+	// Constructor for setting questions in QuestionList
+	QuestionList(Question[] q){
+		for(Question question: q){
+			this.add(question);
 		}
-	}
-	
-	public QuestionList(Question[] question) {	
-		if(question.length > 0) {
-			for(int i=0;i<question.length;i++) {
-				this.add(question[i]);
-			}
-		}
-	}
-	public String presentQuestion(int index) {
 		
-		return null;
 	}
+	/*Return the Question*/ 
+	public String presentQuestion(int index){
+		if(index<this.size() && index>0){
+			return this.get(index).toString();
+		}else{
+			return null;
+		}
+	}
+
 }
