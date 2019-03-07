@@ -39,7 +39,7 @@ public class SAQuestion extends Question{
 
 	@Override
 	public String toString() {
-		return "#" + this.getQuetionId() + ": " + this.answer + ".";
+		return "#" + this.getQuetionId() + ": " + this.getQuestionText() + "? \n Answer: " ;
 	}
 
 }
