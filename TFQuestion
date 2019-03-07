@@ -1,4 +1,4 @@
-package Final;
+package JaskiratSingh_LIBa3;
 
 public class TFQuestion extends Question {
 
@@ -17,6 +17,7 @@ public class TFQuestion extends Question {
 	}
 
 	public boolean isAnswer() {
+	
 		return answer;
 	}
 
@@ -28,10 +29,10 @@ public class TFQuestion extends Question {
 		if(guess==null) {
 			return false;
 		}
-		if(guess.getClass().equals("String")) {
+		if(guess instanceof String) {
 			return guess.toString().toLowerCase().equals("true")==this.answer;
 		}
-		if(guess.getClass().equals("Boolean")) {
+		if(guess instanceof Boolean) {
 			return (Boolean)guess== this.answer;
 		}
 		return false; 
@@ -40,7 +41,7 @@ public class TFQuestion extends Question {
 	@Override
 	public String toString() {
 		
-		return "#" + this.getQuetionId() + ": " + this.getQuestionText() + "? \n Answer: ";
+		return "#" + this.getQuetionId() + ": " + this.getQuestionText() + "?";
 	}
 	
 
