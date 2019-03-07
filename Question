@@ -1,4 +1,4 @@
-package Final;
+package JaskiratSingh_LIBa3;
 
 public abstract class Question {
 
@@ -46,7 +46,7 @@ public abstract class Question {
 		if (this.questionText.equals("TBD")) {
 			return "#" + this.questionId + ": No Question text entered";
 		}
-		return "#" + this.questionId + ": " + this.questionText + "? \n Answer: ";
+		return "#" + this.questionId + ": " + this.questionText + "?";
 	}
 
 }
