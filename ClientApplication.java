@@ -1,7 +1,7 @@
 package Final;
 /*
  * File updated on March 3, 2018 by M. Mohiuddin to reduce ToDO list
- Name:  [your name here]
+ Name:  [Jaskirat Singh]
  Assignment:  Assignment 3
  
  Description:
@@ -58,7 +58,7 @@ public class ClientApplication {
                     // if the question is not empty, add it to the list
                     if (q != null) {
                         // TODO 3: add this question to the list
-                        
+                    	list.add(q);
                         
                     }
                     break;
@@ -101,7 +101,6 @@ public class ClientApplication {
         
         // init question type entered by user as something invalid
         int questionType = -1;
-        QuestionType questionTypeValue ;
       //  questionTypeValue.getType();
         // loop as long as the question type is valid
         do {
@@ -133,7 +132,12 @@ public class ClientApplication {
                 new boolean[]{true, true}));
 
         // TODO 1.2: return a QuestionType enum value for the user's choice
-        return QuestionType.MULTIPLE_CHOICE;
+        if(questionType == 1)
+        	return QuestionType.TRUE_FALSE;
+        else if(questionType == 2)
+        	return QuestionType.SHORT_ANSWER;
+        else 
+        	return QuestionType.MULTIPLE_CHOICE;
     }
 
         /*
@@ -154,7 +158,7 @@ public class ClientApplication {
         */
         int number = 1;
         for(QuestionType value : QuestionType.values()) {
-        	System.out.println(number + ". " + value.name());
+        	System.out.println(number + ". " + value.getType());
         	number++;
         	}
         
@@ -192,9 +196,39 @@ public class ClientApplication {
                    have to get the list of available options using the
                    getMcOptions() method (the next task) before you get 
                    the question's correct answer.*/
-                
-                
-                
+                	String questionType = type.name();
+                	String answer ;
+                	
+                	if(questionType.equalsIgnoreCase((QuestionType.TRUE_FALSE).name())) {
+                		answer = getNonEmptyString("Answer: ");
+                		boolean ans = false;
+                		if(answer instanceof String && (answer.equalsIgnoreCase("true") || answer.equalsIgnoreCase("false"))) {
+                			ans = Boolean.parseBoolean(answer);
+                		}
+                		else { // invalid answer - throw exception
+                			throw new IllegalArgumentException(answer + " is not a valid answer option and its should be either true or false.");
+                		}
+                		TFQuestion tfQuestion = new TFQuestion(id, qText, ans);
+                		q = tfQuestion;
+                		
+                	}
+                	else if(questionType.equalsIgnoreCase((QuestionType.SHORT_ANSWER).name())) {
+                		answer = getNonEmptyString("Answer: ");
+                		SAQuestion saQuestion = new SAQuestion(id, qText, answer);
+                		q = saQuestion;
+                	}
+                	else if(questionType.equalsIgnoreCase((QuestionType.MULTIPLE_CHOICE).name())){
+                		char ans = 0;
+                		String[] options = getMcOptions();
+                		answer = getNonEmptyString("Answer: ");
+                		if(answer instanceof String)
+                		{
+                			ans = answer.charAt(0);
+                		}
+                		MCQuestion mcQuestion = new MCQuestion(id, qText, ans, options);
+                		q = mcQuestion;
+                	}
+                	
                 
                 // blank line to make things look nice
                 System.out.println();
@@ -228,7 +262,7 @@ public class ClientApplication {
         
         // the array that will contain the multiple choice options
         // TODO 2.3: construct a String array with numOptions elements
-        
+        String[] options = new String[numOptions];
 
         // get the multiple choice options and store in the array
         System.out.println("Enter the Multiple Choice Options:");
@@ -242,10 +276,12 @@ public class ClientApplication {
             /* TODO 2.4: use my getNonEmptyString() method to get an option
             from the user and store it in the current element of the
             String options array.*/
+            options[i] = getNonEmptyString(prompt);
             
         }
 
         // TODO 2.5: return the string array of multiple-choice options
+        return options;
         
     }
 
@@ -263,6 +299,40 @@ public class ClientApplication {
         // Keep track of the score and display it at the end e.g. 3/5.
         // Use the methods in the Questions and QuestionList classes whenever
         // appropriate.
+    	if(!list.isEmpty()) {
+    		Question q = null;
+    		boolean correctAnswer;
+    		int score = 0;
+    		int totalQuestions = list.size();
+    		for(int i=0;i<list.size();i++) {
+    			String question = list.presentQuestion(i);
+    			System.out.println(question);
+    			String userAnswer = getNonEmptyString("Answer: ");
+    			System.out.println();
+    			q = list.get(i);
+    			if(q instanceof MCQuestion) {
+    				correctAnswer = q.isCorrect(userAnswer);
+    				if(correctAnswer)
+    					score++;
+    			}
+    			if(q instanceof SAQuestion) {
+    				correctAnswer = q.isCorrect(userAnswer);
+    				if(correctAnswer)
+    					score++;
+    			}
+    			if(q instanceof TFQuestion) {
+    				correctAnswer = q.isCorrect(userAnswer);
+    				if(correctAnswer)
+    					score++;
+    			}
+    		}
+    		System.out.println();
+    		System.out.println("Your Score: " + score + "/" + totalQuestions);
+    		System.out.println();
+    	}
+    	else {
+    		System.out.println("Sorry, no questions..");
+    	}
 
     }
     
