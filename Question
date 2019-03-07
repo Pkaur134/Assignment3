@@ -46,7 +46,7 @@ public abstract class Question {
 		if (this.questionText.equals("TBD")) {
 			return "#" + this.questionId + ": No Question text entered";
 		}
-		return "#" + this.questionId + ": " + this.questionText + ".";
+		return "#" + this.questionId + ": " + this.questionText + "? \n Answer: ";
 	}
 
 }
