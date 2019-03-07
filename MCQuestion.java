@@ -160,7 +160,7 @@ public class MCQuestion extends Question {
 
 		StringBuffer finalText = new StringBuffer();
 		char letter = 'a';
-		finalText.append(getQuestionText());
+		finalText.append(this.getQuestionText());
 		finalText.append("\n");
 		if (options.length == 0)
 			finalText.append("No options added, yet!");
@@ -170,8 +170,10 @@ public class MCQuestion extends Question {
 				finalText.append(") ");
 				finalText.append(options[iOption]);
 				finalText.append("\n");
+				
 			}
+			finalText.append("Answer: ");
 		}
-		return "#" + getQuetionId() + ": " + finalText;
+		return "#" + this.getQuetionId() + ": " + finalText;
 	}
 }
